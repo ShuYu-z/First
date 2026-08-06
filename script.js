@@ -196,6 +196,14 @@ function renderCalendar(){
 
         div.innerHTML=d;
         const dayString =
+`${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+
+const journals =
+JSON.parse(localStorage.getItem("journals")) || [];
+
+const hasJournal =
+journals.some(j => j.day === dayString);
+        const dayString =
     `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
 
 div.onclick=function(){
@@ -217,7 +225,23 @@ div.onclick=function(){
             div.classList.add("today");
 
         }
+if(hasJournal){
 
+    const dot=document.createElement("div");
+
+    dot.className="calendar-dot";
+
+    div.appendChild(dot);
+
+if(hasJournal){
+
+    const dot=document.createElement("div");
+
+    dot.className="calendar-dot";
+
+    div.appendChild(dot);
+
+}
         calendar.appendChild(div);
 
     }
