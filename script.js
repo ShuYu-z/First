@@ -120,3 +120,14 @@ function deleteJournal(id, event){
     loadJournals();
 
 }
+// 新建日记
+
+function newJournal(){
+
+    document.getElementById("title").value="";
+
+    document.getElementById("content").value="";
+
+    document.getElementById("title").focus();
+
+}
