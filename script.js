@@ -28,12 +28,22 @@ function saveJournal() {
         return;
     }
 
-    const journal = {
-        id: Date.now(),
-        title: title,
-        content: content,
-        date: new Date().toLocaleString()
-    };
+   const now = new Date();
+
+const journal = {
+    id: Date.now(),
+    title: title,
+    content: content,
+
+    // 完整时间（显示用）
+    date: now.toLocaleString(),
+
+    // 标准日期（日历用）
+    day:
+        now.getFullYear() + "-" +
+        String(now.getMonth() + 1).padStart(2, "0") + "-" +
+        String(now.getDate()).padStart(2, "0")
+};
 
     let journals = JSON.parse(localStorage.getItem("journals")) || [];
 
