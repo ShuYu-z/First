@@ -719,3 +719,27 @@ color:white;
     font-weight:bold;
 
 }
+.calendar-day{
+
+    position:relative;
+
+}
+.calendar-dot{
+
+    position:absolute;
+
+    bottom:4px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:5px;
+
+    height:5px;
+
+    border-radius:50%;
+
+    background:#5ca6ff;
+
+}
