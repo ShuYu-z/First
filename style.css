@@ -1,15 +1,20 @@
 body {
-    background-color: #f5f7fa;
+    margin: 0;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     font-family: Arial, sans-serif;
+
+    /* 浅蓝色渐变 */
+   background: linear-gradient(
+135deg,
+#d7ecff 0%,
+#eaf6ff 45%,
+#f8fcff 100%
+);
     text-align: center;
-    margin-top: 100px;
-}
-
-h1 {
-    color: #2c3e50;
-}
-
-p {
-    color: #666;
-    font-size: 20px;
 }
