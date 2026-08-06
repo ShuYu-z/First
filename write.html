@@ -3,37 +3,71 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Write | My World</title>
+<title>My Journal</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="write.css">
 
 </head>
 
 <body>
 
-<div class="write-page">
+<div class="page">
 
-    <h1>✨ My Journal</h1>
+<div class="top-bar">
 
-    <p>今天想记录些什么？</p>
+<a href="index.html" class="back">← Back</a>
 
-    <input
-        type="text"
-        placeholder="输入今天的标题">
-
-    <textarea
-        placeholder="写下今天发生的事情……">
-    </textarea>
-
-    <button>
-        保存
-    </button>
+<div id="date"></div>
 
 </div>
+
+<h1>✨ My Journal</h1>
+
+<p class="subtitle">
+
+今天想记录些什么？
+
+</p>
+
+<input
+type="text"
+placeholder="今天的标题……"
+class="title-input">
+
+<textarea
+placeholder="今天发生了什么？
+
+今天有什么值得开心的事情？
+
+或者只是想安静写一点东西……"
+class="content-input"></textarea>
+
+<button class="save-btn">
+
+Save
+
+</button>
+
+</div>
+
+<script>
+
+const today = new Date();
+
+const options = {
+year:'numeric',
+month:'2-digit',
+day:'2-digit'
+};
+
+document.getElementById("date").innerHTML=
+today.toLocaleDateString('zh-CN',options);
+
+</script>
 
 </body>
 
