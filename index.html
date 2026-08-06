@@ -21,10 +21,25 @@
             欢迎来到我的 AI 工作台
         </p>
 
-        <button class="enter-btn">
-            Enter →
-        </button>
+  <button class="enter-btn" onclick="goToWrite()">
+    Enter →
+</button>
 
+<script>
+function goToWrite() {
+
+    // 按钮点击反馈
+    document.querySelector(".enter-btn").style.transform = "scale(0.95)";
+
+    // 页面淡出
+    document.body.style.opacity = "0";
+
+    // 0.6秒后跳转
+    setTimeout(() => {
+        window.location.href = "write.html";
+    }, 600);
+}
+</script>
     </div>
 
 </body>
