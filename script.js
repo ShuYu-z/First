@@ -72,11 +72,19 @@ function loadJournals() {
 
         card.className = "journal-item";
 
-        card.innerHTML = `
-            <h3>${journal.title}</h3>
-            <p>${journal.date}</p>
-        `;
+      card.innerHTML = `
+<div class="journal-header">
 
+    <h3>${journal.title}</h3>
+
+    <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
+        🗑
+    </button>
+
+</div>
+
+<p>${journal.date}</p>
+`;
         card.addEventListener("click", () => {
 
             document.getElementById("title").value = journal.title;
@@ -87,5 +95,28 @@ function loadJournals() {
         list.appendChild(card);
 
     });
+
+}
+// 删除日记
+function deleteJournal(id, event){
+
+    // 防止点击垃圾桶时触发打开日记
+    event.stopPropagation();
+
+    if(!confirm("确定删除这篇日记吗？")){
+        return;
+    }
+
+    let journals =
+        JSON.parse(localStorage.getItem("journals")) || [];
+
+    journals = journals.filter(journal => journal.id !== id);
+
+    localStorage.setItem(
+        "journals",
+        JSON.stringify(journals)
+    );
+
+    loadJournals();
 
 }
