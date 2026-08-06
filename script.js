@@ -68,8 +68,13 @@ const journal = {
 
 function loadJournals() {
 
-    const journals =
+    let journals =
         JSON.parse(localStorage.getItem("journals")) || [];
+    if(selectedDay){
+
+    journals=journals.filter(journal=>journal.day===selectedDay);
+
+}
 
     const list = document.getElementById("journalList");
 
@@ -147,6 +152,7 @@ function newJournal(){
 // =========================
 
 let currentDate = new Date();
+let selectedDay = null;
 
 function renderCalendar(){
 
@@ -189,6 +195,16 @@ function renderCalendar(){
         div.className="calendar-day";
 
         div.innerHTML=d;
+        const dayString =
+    `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+
+div.onclick=function(){
+
+    selectedDay=dayString;
+
+    loadJournals();
+
+};
 
         const today=new Date();
 
