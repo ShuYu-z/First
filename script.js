@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     loadJournals();
+renderCalendar();
 
 });
 
@@ -139,5 +140,80 @@ function newJournal(){
     document.getElementById("content").value="";
 
     document.getElementById("title").focus();
+
+}
+// =========================
+// Calendar
+// =========================
+
+let currentDate = new Date();
+
+function renderCalendar(){
+
+    const calendar =
+        document.getElementById("calendar");
+
+    if(!calendar) return;
+
+    calendar.innerHTML="";
+
+    const year =
+        currentDate.getFullYear();
+
+    const month =
+        currentDate.getMonth();
+
+    document.getElementById("monthTitle").innerHTML =
+        `${year} / ${month+1}`;
+
+    const firstDay =
+        new Date(year,month,1).getDay();
+
+    const days =
+        new Date(year,month+1,0).getDate();
+
+    // 前面的空格
+    for(let i=0;i<firstDay;i++){
+
+        const blank=document.createElement("div");
+
+        calendar.appendChild(blank);
+
+    }
+
+    // 日期
+    for(let d=1;d<=days;d++){
+
+        const div=document.createElement("div");
+
+        div.className="calendar-day";
+
+        div.innerHTML=d;
+
+        const today=new Date();
+
+        if(
+            d===today.getDate() &&
+            month===today.getMonth() &&
+            year===today.getFullYear()
+        ){
+
+            div.classList.add("today");
+
+        }
+
+        calendar.appendChild(div);
+
+    }
+
+}
+
+function changeMonth(step){
+
+    currentDate.setMonth(
+        currentDate.getMonth()+step
+    );
+
+    renderCalendar();
 
 }
