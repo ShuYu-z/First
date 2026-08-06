@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 
 <head>
 
@@ -9,65 +9,61 @@
 
 <title>My Journal</title>
 
-<link rel="stylesheet" href="write.css">
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body class="write-page">
 
-<div class="page">
+<div class="journal-layout">
 
-<div class="top-bar">
+    <aside class="sidebar">
 
-<a href="index.html" class="back">← Back</a>
+        <h2>My Notes</h2>
 
-<div id="date"></div>
+        <div id="journalList"></div>
+
+    </aside>
+
+    <main class="write-container">
+
+        <div class="top-bar">
+
+            <a href="index.html">← Back</a>
+
+            <span id="date"></span>
+
+        </div>
+
+        <h1>✨ My Journal</h1>
+
+        <p class="subtitle">
+
+            今天想记录些什么？
+
+        </p>
+
+        <input
+        id="title"
+        type="text"
+        placeholder="今天的标题……">
+
+        <textarea
+        id="content"
+        placeholder="今天发生了什么？&#10;&#10;今天有什么值得开心的事情？&#10;&#10;或者只是想安静写一点东西……">
+        </textarea>
+
+        <button onclick="saveJournal()">
+
+            Save
+
+        </button>
+
+    </main>
 
 </div>
 
-<h1>✨ My Journal</h1>
-
-<p class="subtitle">
-
-今天想记录些什么？
-
-</p>
-
-<input
-type="text"
-placeholder="今天的标题……"
-class="title-input">
-
-<textarea
-placeholder="今天发生了什么？
-
-今天有什么值得开心的事情？
-
-或者只是想安静写一点东西……"
-class="content-input"></textarea>
-
-<button class="save-btn">
-
-Save
-
-</button>
-
-</div>
-
-<script>
-
-const today = new Date();
-
-const options = {
-year:'numeric',
-month:'2-digit',
-day:'2-digit'
-};
-
-document.getElementById("date").innerHTML=
-today.toLocaleDateString('zh-CN',options);
-
-</script>
+<script src="script.js"></script>
 
 </body>
 
