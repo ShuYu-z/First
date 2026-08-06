@@ -233,3 +233,10 @@ function changeMonth(step){
     renderCalendar();
 
 }
+function showAll(){
+
+    selectedDay=null;
+
+    loadJournals();
+
+}
