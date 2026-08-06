@@ -203,9 +203,7 @@ JSON.parse(localStorage.getItem("journals")) || [];
 
 const hasJournal =
 journals.some(j => j.day === dayString);
-        const dayString =
-    `${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-
+ 
 div.onclick=function(){
 
     selectedDay=dayString;
@@ -233,13 +231,6 @@ if(hasJournal){
 
     div.appendChild(dot);
 
-if(hasJournal){
-
-    const dot=document.createElement("div");
-
-    dot.className="calendar-dot";
-
-    div.appendChild(dot);
 
 }
         calendar.appendChild(div);
@@ -257,10 +248,83 @@ function changeMonth(step){
     renderCalendar();
 
 }
-function showAll(){
+function renderCalendar() {
 
-    selectedDay=null;
+    const calendar = document.getElementById("calendar");
 
-    loadJournals();
+    if (!calendar) return;
+
+    calendar.innerHTML = "";
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    document.getElementById("monthTitle").textContent =
+        `${year} / ${month + 1}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const days = new Date(year, month + 1, 0).getDate();
+
+    // 前面的空白
+    for (let i = 0; i < firstDay; i++) {
+
+        const blank = document.createElement("div");
+        calendar.appendChild(blank);
+
+    }
+
+    const journals =
+        JSON.parse(localStorage.getItem("journals")) || [];
+
+    for (let d = 1; d <= days; d++) {
+
+        const div = document.createElement("div");
+
+        div.className = "calendar-day";
+
+        div.textContent = d;
+
+        const dayString =
+            `${year}-${String(month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+
+        div.onclick = function () {
+
+            selectedDay = dayString;
+
+           loadJournals();
+renderCalendar();
+
+        };
+
+        // 今天
+        const today = new Date();
+
+        if (
+            d === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+        ) {
+
+            div.classList.add("today");
+
+        }
+
+        // 是否有日记
+        const hasJournal =
+            journals.some(j => j.day === dayString);
+
+        if (hasJournal) {
+
+            const dot = document.createElement("div");
+
+            dot.className = "calendar-dot";
+
+            div.appendChild(dot);
+
+        }
+
+        calendar.appendChild(div);
+
+    }
 
 }
