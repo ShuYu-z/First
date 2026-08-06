@@ -536,3 +536,38 @@ transform:translateY(0);
     box-shadow:0 10px 25px rgba(90,166,255,.35);
 
 }
+/* 日记标题和删除按钮 */
+
+.journal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.delete-btn{
+
+    border:none;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    opacity:.6;
+
+    transition:.3s;
+
+}
+
+.delete-btn:hover{
+
+    opacity:1;
+
+    transform:scale(1.2);
+
+}
