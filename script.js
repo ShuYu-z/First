@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     loadJournals();
-renderCalendar();
+    renderCalendar();
+    updateStatistics();
 
 });
 
@@ -59,6 +60,8 @@ const journal = {
     document.getElementById("content").value = "";
 
     loadJournals();
+renderCalendar();
+updateStatistics();
 
 }
 
@@ -133,8 +136,10 @@ function deleteJournal(id, event){
         JSON.stringify(journals)
     );
 
-    loadJournals();
-
+ 
+loadJournals();
+renderCalendar();
+updateStatistics();
 }
 // 新建日记
 
@@ -327,4 +332,187 @@ renderCalendar();
 
     }
 
+}
+// =========================
+// 日记统计
+// =========================
+
+function updateStatistics() {
+
+    const totalElement =
+        document.getElementById("totalJournals");
+
+    const monthElement =
+        document.getElementById("monthJournals");
+
+    const streakElement =
+        document.getElementById("streakDays");
+
+    // 如果页面没有统计区域，就不执行
+    if (
+        !totalElement ||
+        !monthElement ||
+        !streakElement
+    ) {
+        return;
+    }
+
+    // 获取所有日记
+    const journals =
+        JSON.parse(localStorage.getItem("journals")) || [];
+
+    // =========================
+    // 1. 总日记数
+    // =========================
+
+    totalElement.textContent = journals.length;
+
+
+    // =========================
+    // 2. 本月日记数
+    // =========================
+
+    const now = new Date();
+
+    const currentYear =
+        now.getFullYear();
+
+    const currentMonth =
+        now.getMonth() + 1;
+
+    const monthCount = journals.filter(journal => {
+
+        if (!journal.day) {
+            return false;
+        }
+
+        const parts =
+            journal.day.split("-");
+
+        const year =
+            Number(parts[0]);
+
+        const month =
+            Number(parts[1]);
+
+        return (
+            year === currentYear &&
+            month === currentMonth
+        );
+
+    }).length;
+
+    monthElement.textContent = monthCount;
+
+
+    // =========================
+    // 3. 连续记录天数
+    // =========================
+
+    const streak =
+        calculateStreak(journals);
+
+    streakElement.textContent = streak;
+}
+
+
+// =========================
+// 计算连续记录天数
+// =========================
+
+function calculateStreak(journals) {
+
+    if (journals.length === 0) {
+        return 0;
+    }
+
+    // 获取所有不同日期
+    const days = [
+        ...new Set(
+            journals
+                .map(journal => journal.day)
+                .filter(day => day)
+        )
+    ];
+
+    if (days.length === 0) {
+        return 0;
+    }
+
+    // 按日期从新到旧排序
+    days.sort(
+        (a, b) =>
+            new Date(b) - new Date(a)
+    );
+
+    const today =
+        new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    const latestDay =
+        new Date(days[0]);
+
+    latestDay.setHours(0, 0, 0, 0);
+
+
+    // =========================
+    // 如果最近一天不是今天
+    // =========================
+
+    const difference =
+        Math.floor(
+            (today - latestDay) /
+            (1000 * 60 * 60 * 24)
+        );
+
+    /*
+       如果今天没有写日记，
+       就检查昨天有没有。
+
+       如果连今天和昨天都没有，
+       连续记录就是 0。
+    */
+
+    if (difference > 1) {
+        return 0;
+    }
+
+
+    // =========================
+    // 开始计算连续天数
+    // =========================
+
+    let streak = 1;
+
+    for (let i = 1; i < days.length; i++) {
+
+        const current =
+            new Date(days[i - 1]);
+
+        const previous =
+            new Date(days[i]);
+
+        current.setHours(0, 0, 0, 0);
+        previous.setHours(0, 0, 0, 0);
+
+        const diff =
+            Math.floor(
+                (current - previous) /
+                (1000 * 60 * 60 * 24)
+            );
+
+        if (diff === 1) {
+
+            streak++;
+
+        } else {
+
+            break;
+
+        }
+
+    }
+
+    return streak;
 }
