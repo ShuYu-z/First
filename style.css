@@ -1726,3 +1726,102 @@ video {
     }
 
 }
+/* =====================================================
+   手机端滚动修复
+   ===================================================== */
+
+@media screen and (max-width: 768px) {
+
+    html {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    body {
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+
+        margin: 0;
+        padding: 0;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        position: relative;
+    }
+
+    /* 主布局允许自然变长 */
+    .journal-layout {
+        width: 100%;
+        min-width: 0;
+
+        height: auto;
+        min-height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+
+        overflow: visible;
+    }
+
+    /* 左侧栏在手机端不再固定高度 */
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+
+        height: auto;
+        min-height: auto;
+
+        position: relative;
+
+        overflow: visible;
+    }
+
+    /* 日记列表 */
+    #journalList {
+        width: 100%;
+        height: auto;
+        max-height: none;
+
+        overflow: visible;
+    }
+
+    /* 日历 */
+    .calendar-box {
+        width: 100%;
+        height: auto;
+
+        overflow: visible;
+    }
+
+    #calendar {
+        height: auto;
+        overflow: visible;
+    }
+
+    /* 日记编辑区域 */
+    .write-container {
+        width: 100%;
+        min-width: 0;
+
+        height: auto;
+        min-height: 100vh;
+
+        position: relative;
+
+        overflow: visible;
+    }
+
+    /* 防止内容被强制限制 */
+    .write-container h1,
+    .write-container p,
+    .write-container input,
+    .write-container textarea,
+    .write-container button {
+        max-width: 100%;
+    }
+}
