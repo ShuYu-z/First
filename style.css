@@ -1825,3 +1825,139 @@ video {
         max-width: 100%;
     }
 }
+/* =====================================================
+   手机端：彻底修复横向溢出
+   ===================================================== */
+
+@media screen and (max-width: 768px) {
+
+    /* 页面本身禁止横向超出 */
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+    }
+
+    /* 所有元素都不能超过手机屏幕 */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
+    /* 主布局 */
+    .journal-layout {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow-x: hidden !important;
+    }
+
+    /* 左侧区域 */
+    .sidebar {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin: 0 !important;
+
+        overflow-x: hidden !important;
+    }
+
+    /* 日记列表 */
+    #journalList {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .journal-item {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* 统计区域 */
+    .statistics {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* 统计卡片 */
+    .stats-container,
+    .statistics-container,
+    .stats-cards {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .stat-card {
+        min-width: 0 !important;
+    }
+
+    /* 日历 */
+    .calendar-box {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        overflow-x: hidden !important;
+    }
+
+    #calendar {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* 日记编辑区域 */
+    .write-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+
+        margin: 0 !important;
+
+        overflow-x: hidden !important;
+    }
+
+    /* 顶部 */
+    .top-bar {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* 标题 */
+    .write-container h1 {
+        max-width: 100% !important;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    /* 输入框 */
+    #title,
+    #content {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* 防止超长文字撑开页面 */
+    .write-container,
+    .sidebar,
+    .journal-item,
+    .journal-item h3,
+    .journal-item p {
+        overflow-wrap: anywhere;
+        word-wrap: break-word;
+    }
+}
