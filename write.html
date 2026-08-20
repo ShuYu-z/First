@@ -17,118 +17,157 @@
 
 <div class="journal-layout">
 
-  <aside class="sidebar">
+    <!-- =========================
+         左侧边栏
+    ========================== -->
 
-<div class="sidebar-title">
+    <aside class="sidebar">
 
-<h2 onclick="showAll()">
+        <div class="sidebar-title">
 
-My Notes
+            <h2 onclick="showAll()">
+                My Notes
+            </h2>
 
-</h2>
+            <button id="newBtn" onclick="newJournal()">
+                ＋
+            </button>
 
-<button id="newBtn" onclick="newJournal()">
-
-＋
-
-</button>
-
-</div>
-
-<div id="journalList"></div>
-
-<hr class="sidebar-line">
-
-<!-- =========================
-     日记统计
-========================= -->
-
-<div class="stats-box">
-
-    <h3>📊 Statistics</h3>
-
-    <div class="stats-grid">
-
-        <div class="stat-item">
-            <strong id="totalJournals">0</strong>
-            <span>总日记数</span>
         </div>
 
-        <div class="stat-item">
-            <strong id="monthJournals">0</strong>
-            <span>本月记录</span>
+
+        <!-- 日记列表 -->
+
+        <div id="journalList"></div>
+
+
+        <hr class="sidebar-line">
+
+
+        <!-- =========================
+             日记统计
+        ========================== -->
+
+        <div class="stats-box">
+
+            <h3>📊 Statistics</h3>
+
+            <div class="stats-grid">
+
+                <div class="stat-item">
+
+                    <strong id="totalJournals">0</strong>
+
+                    <span>总日记数</span>
+
+                </div>
+
+
+                <div class="stat-item">
+
+                    <strong id="monthJournals">0</strong>
+
+                    <span>本月记录</span>
+
+                </div>
+
+
+                <div class="stat-item">
+
+                    <strong id="streakDays">0</strong>
+
+                    <span>连续记录</span>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="stat-item">
-            <strong id="streakDays">0</strong>
-            <span>连续记录</span>
+
+        <hr class="sidebar-line">
+
+
+        <!-- =========================
+             日历
+        ========================== -->
+
+        <div class="calendar-box">
+
+            <h3>📅 Calendar</h3>
+
+            <div class="calendar-header">
+
+                <button onclick="changeMonth(-1)">
+                    ‹
+                </button>
+
+                <span id="monthTitle"></span>
+
+                <button onclick="changeMonth(1)">
+                    ›
+                </button>
+
+            </div>
+
+            <div id="calendar"></div>
+
         </div>
 
-    </div>
+    </aside>
 
-</div>
 
-<hr class="sidebar-line">
-
-<div class="calendar-box">
-
-    <h3>📅 Calendar</h3>
-
-    <div class="calendar-header">
-
-        <button onclick="changeMonth(-1)">‹</button>
-
-        <span id="monthTitle"></span>
-
-        <button onclick="changeMonth(1)">›</button>
-
-    </div>
-
-    <div id="calendar"></div>
-
-</div>
-
-</aside>
+    <!-- =========================
+         右侧写日记区域
+    ========================== -->
 
     <main class="write-container">
 
         <div class="top-bar">
 
-            <a href="index.html">← Back</a>
+            <a href="index.html">
+                ← Back
+            </a>
 
             <span id="date"></span>
 
         </div>
 
-        <h1>✨ My Journal</h1>
+
+        <h1>
+            ✨ My Journal
+        </h1>
+
 
         <p class="subtitle">
-
             今天想记录些什么？
-
         </p>
 
+
         <input
-        id="title"
-        type="text"
-        placeholder="今天的标题……">
+            id="title"
+            type="text"
+            placeholder="今天的标题……"
+        >
+
 
         <textarea
-        id="content"
-        placeholder="今天发生了什么？&#10;&#10;今天有什么值得开心的事情？&#10;&#10;或者只是想安静写一点东西……">
-        </textarea>
+            id="content"
+            placeholder="今天发生了什么？&#10;&#10;今天有什么值得开心的事情？&#10;&#10;或者只是想安静写一点东西……"
+        ></textarea>
+
 
         <button onclick="saveJournal()">
-
             Save
-
         </button>
 
     </main>
 
 </div>
 
+
 <script src="script.js"></script>
 
 </body>
 
+</html>
