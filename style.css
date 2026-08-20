@@ -784,3 +784,230 @@ color:white;
     font-size: 12px;
     color: #7896b5;
 }
+/* ========================================
+   Responsive Design
+   自动适配电脑、平板、手机
+======================================== */
+
+/* 防止宽度计算导致元素超出屏幕 */
+* {
+    box-sizing: border-box;
+}
+
+/* 图片、媒体自动缩小 */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ----------------------------------------
+   大屏幕优化
+---------------------------------------- */
+
+.journal-layout {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* 左右区域允许根据屏幕自动伸缩 */
+.sidebar {
+    flex-shrink: 0;
+}
+
+.write-container {
+    min-width: 0;
+}
+
+
+/* ----------------------------------------
+   中等屏幕 / 平板
+---------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .journal-layout {
+        gap: 20px;
+    }
+
+    .sidebar {
+        width: 280px;
+        min-width: 240px;
+    }
+
+    .write-container {
+        padding: 35px 30px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .stat-item {
+        padding: 12px 4px;
+    }
+
+    .stat-item strong {
+        font-size: 21px;
+    }
+
+    #calendar {
+        gap: 4px;
+    }
+
+}
+
+
+/* ----------------------------------------
+   小屏幕 / 手机
+---------------------------------------- */
+
+@media (max-width: 700px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* 左右布局改为上下布局 */
+    .journal-layout {
+        flex-direction: column;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    /* 左侧栏变成完整宽度 */
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        padding: 20px;
+    }
+
+    /* 编辑区域变成完整宽度 */
+    .write-container {
+        width: 100%;
+        min-width: 0;
+        padding: 30px 20px;
+    }
+
+    /* 标题栏 */
+    .sidebar-title {
+        width: 100%;
+    }
+
+    /* 防止历史日记内容撑破手机 */
+    #journalList {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .journal-item {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .journal-item h3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Statistics */
+    .stats-grid {
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .stat-item {
+        padding: 12px 5px;
+        min-width: 0;
+    }
+
+    .stat-item strong {
+        font-size: clamp(18px, 6vw, 24px);
+    }
+
+    .stat-item span {
+        font-size: clamp(10px, 3vw, 12px);
+    }
+
+    /* Calendar */
+    .calendar-box {
+        width: 100%;
+    }
+
+    #calendar {
+        width: 100%;
+        gap: 4px;
+    }
+
+    .calendar-day {
+        width: 100%;
+        min-width: 0;
+        height: clamp(32px, 9vw, 42px);
+        font-size: clamp(12px, 3.5vw, 15px);
+    }
+
+    /* 日记标题 */
+    .write-container h1 {
+        font-size: clamp(28px, 8vw, 38px);
+    }
+
+    .subtitle {
+        font-size: clamp(13px, 4vw, 16px);
+    }
+
+    /* 输入框 */
+    #title,
+    #content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #title {
+        font-size: 16px;
+    }
+
+    #content {
+        min-height: 280px;
+        font-size: 16px;
+    }
+
+    /* 顶部导航 */
+    .top-bar {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+}
+
+
+/* ----------------------------------------
+   超小屏幕
+---------------------------------------- */
+
+@media (max-width: 380px) {
+
+    .sidebar {
+        padding: 15px;
+    }
+
+    .write-container {
+        padding: 25px 15px;
+    }
+
+    .stats-grid {
+        gap: 5px;
+    }
+
+    .stat-item {
+        padding: 10px 2px;
+    }
+
+    .calendar-day {
+        font-size: 12px;
+    }
+
+}
