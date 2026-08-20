@@ -1396,3 +1396,333 @@ video {
     }
 
 }
+/* =====================================================
+   手机端自适应布局
+   ===================================================== */
+
+@media screen and (max-width: 768px) {
+
+    /* ---------- 整个页面 ---------- */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    /* ---------- 主布局 ---------- */
+
+    .journal-layout {
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    /* =====================================================
+       左侧栏
+       ===================================================== */
+
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        height: auto;
+        min-height: auto;
+        position: relative;
+        overflow: visible;
+        padding: 28px 20px 35px;
+    }
+
+
+    /* My Notes */
+
+    .sidebar-title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .sidebar-title h2 {
+        margin: 0;
+        font-size: 34px;
+        line-height: 1.2;
+    }
+
+
+    /* +按钮 */
+
+    #newBtn {
+        width: 58px;
+        height: 58px;
+        min-width: 58px;
+        border-radius: 50%;
+        font-size: 36px;
+    }
+
+
+    /* ---------- 日记列表 ---------- */
+
+    #journalList {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .journal-item {
+        width: 100%;
+        max-width: 100%;
+    }
+
+
+    /* ---------- 分割线 ---------- */
+
+    .sidebar-line {
+        width: 100%;
+        margin: 28px 0;
+    }
+
+
+    /* =====================================================
+       Statistics
+       ===================================================== */
+
+    .statistics {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .statistics h2,
+    .statistics h3 {
+        font-size: 32px;
+    }
+
+
+    /* 统计卡片 */
+
+    .stats-container,
+    .statistics-container,
+    .stats-cards {
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .stat-card {
+        width: 100%;
+        min-width: 0;
+        padding: 20px 8px;
+    }
+
+
+    /* =====================================================
+       Calendar
+       ===================================================== */
+
+    .calendar-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .calendar-box h3 {
+        font-size: 30px;
+        margin-bottom: 25px;
+    }
+
+
+    /* 月份标题 */
+
+    .calendar-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .calendar-header span {
+        font-size: 26px;
+    }
+
+
+    /* 日历 */
+
+    #calendar {
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+    }
+
+    .calendar-day {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-width: 0;
+    }
+
+
+    /* =====================================================
+       日记编辑区域
+       ===================================================== */
+
+    .write-container {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 30px 20px 50px;
+        border-radius: 30px 30px 0 0;
+    }
+
+
+    /* 顶部 */
+
+    .top-bar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    .top-bar a {
+        font-size: 18px;
+    }
+
+    #date {
+        font-size: 18px;
+    }
+
+
+    /* ---------- My Journal ---------- */
+
+    .write-container h1 {
+        width: 100%;
+        font-size: 48px;
+        line-height: 1.15;
+        margin: 35px 0 15px;
+        word-break: normal;
+    }
+
+    .subtitle {
+        font-size: 24px;
+        line-height: 1.5;
+        margin-bottom: 28px;
+    }
+
+
+    /* ---------- 标题输入框 ---------- */
+
+    #title {
+        width: 100%;
+        max-width: 100%;
+        height: 70px;
+        font-size: 20px;
+        padding: 0 22px;
+    }
+
+
+    /* ---------- 正文输入框 ---------- */
+
+    #content {
+        width: 100%;
+        max-width: 100%;
+        min-height: 320px;
+        height: 320px;
+        font-size: 19px;
+        padding: 22px;
+        resize: vertical;
+    }
+
+
+    /* ---------- Save ---------- */
+
+    .write-container > button {
+        width: 180px;
+        max-width: 70%;
+        height: 55px;
+        margin: 30px auto 0;
+        display: block;
+        font-size: 20px;
+    }
+
+}
+
+
+/* =====================================================
+   更小的手机
+   ===================================================== */
+
+@media screen and (max-width: 480px) {
+
+    .sidebar {
+        padding: 22px 16px 30px;
+    }
+
+    .sidebar-title h2 {
+        font-size: 30px;
+    }
+
+    #newBtn {
+        width: 52px;
+        height: 52px;
+        min-width: 52px;
+        font-size: 32px;
+    }
+
+    .statistics h2,
+    .statistics h3 {
+        font-size: 28px;
+    }
+
+    .calendar-box h3 {
+        font-size: 27px;
+    }
+
+    .calendar-header span {
+        font-size: 23px;
+    }
+
+    #calendar {
+        gap: 5px;
+    }
+
+    .write-container {
+        padding: 25px 16px 40px;
+    }
+
+    .write-container h1 {
+        font-size: 42px;
+    }
+
+    .subtitle {
+        font-size: 21px;
+    }
+
+    #title {
+        height: 64px;
+        font-size: 18px;
+    }
+
+    #content {
+        min-height: 280px;
+        height: 280px;
+        font-size: 18px;
+    }
+
+}
