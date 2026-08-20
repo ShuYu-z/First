@@ -90,40 +90,7 @@ function saveJournal() {
     alert("日记保存成功！");
 }
 
-   const now = new Date();
 
-const journal = {
-    id: Date.now(),
-    title: title,
-content: content,
-mood: selectedMood,
-    // 完整时间（显示用）
-    date: now.toLocaleString(),
-
-    // 标准日期（日历用）
-    day:
-        now.getFullYear() + "-" +
-        String(now.getMonth() + 1).padStart(2, "0") + "-" +
-        String(now.getDate()).padStart(2, "0")
-};
-
-    let journals = JSON.parse(localStorage.getItem("journals")) || [];
-
-    journals.unshift(journal);
-
-    localStorage.setItem(
-        "journals",
-        JSON.stringify(journals)
-    );
-
-    document.getElementById("title").value = "";
-    document.getElementById("content").value = "";
-
-    loadJournals();
-renderCalendar();
-updateStatistics();
-
-}
 
 // =========================
 // 加载左侧列表
