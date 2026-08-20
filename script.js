@@ -35,8 +35,8 @@ function saveJournal() {
 const journal = {
     id: Date.now(),
     title: title,
-    content: content,
-
+content: content,
+mood: selectedMood,
     // 完整时间（显示用）
     date: now.toLocaleString(),
 
