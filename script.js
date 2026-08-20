@@ -1,6 +1,41 @@
 // =========================
 // 显示今天日期
 // =========================
+let moodText = "";
+
+if (journal.mood) {
+    const moodMap = {
+        "😊": "开心",
+        "😌": "平静",
+        "🥰": "幸福",
+        "😔": "难过",
+        "😡": "生气",
+        "😅": "疲惫"
+    };
+
+    moodText = `
+        <div class="journal-mood">
+            ${journal.mood} ${moodMap[journal.mood] || ""}
+        </div>
+    `;
+}
+
+card.innerHTML = `
+<div class="journal-header">
+
+    <div>
+        ${moodText}
+        <h3>${journal.title}</h3>
+    </div>
+
+    <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
+        🗑
+    </button>
+
+</div>
+
+<p>${journal.date}</p>
+`;
 let selectedMood = "";
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -118,10 +153,10 @@ function loadJournals() {
 
         card.className = "journal-item";
 
-      card.innerHTML = `
+     card.innerHTML = `
 <div class="journal-header">
 
-    <h3>${journal.title}</h3>
+    <h3>${journal.mood ? journal.mood : ""} ${journal.title}</h3>
 
     <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
         🗑
@@ -172,9 +207,15 @@ updateStatistics();
 
 function newJournal(){
 
-    document.getElementById("title").value="";
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
 
-    document.getElementById("content").value="";
+    // 清除心情
+    selectedMood = "";
+
+    document.querySelectorAll(".mood-btn").forEach(btn => {
+        btn.classList.remove("selected");
+    });
 
     document.getElementById("title").focus();
 
