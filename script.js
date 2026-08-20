@@ -1,41 +1,7 @@
 // =========================
 // 显示今天日期
 // =========================
-let moodText = "";
 
-if (journal.mood) {
-    const moodMap = {
-        "😊": "开心",
-        "😌": "平静",
-        "🥰": "幸福",
-        "😔": "难过",
-        "😡": "生气",
-        "😅": "疲惫"
-    };
-
-    moodText = `
-        <div class="journal-mood">
-            ${journal.mood} ${moodMap[journal.mood] || ""}
-        </div>
-    `;
-}
-
-card.innerHTML = `
-<div class="journal-header">
-
-    <div>
-        ${moodText}
-        <h3>${journal.title}</h3>
-    </div>
-
-    <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
-        🗑
-    </button>
-
-</div>
-
-<p>${journal.date}</p>
-`;
 let selectedMood = "";
 document.addEventListener("DOMContentLoaded", () => {
 
