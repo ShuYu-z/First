@@ -1368,3 +1368,9 @@ body {
 .mood-btn.selected span {
     color: white;
 }
+.journal-mood {
+    font-size: 14px;
+    color: #5d88b5;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
