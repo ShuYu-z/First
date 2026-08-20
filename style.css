@@ -784,690 +784,173 @@ color:white;
     font-size: 12px;
     color: #7896b5;
 }
-/* ========================================
-   Responsive Design
-   自动适配电脑、平板、手机
-======================================== */
+/* =====================================================
+   My Journal 响应式布局
+   电脑 / 平板 / 手机
+   ===================================================== */
 
-/* 防止宽度计算导致元素超出屏幕 */
+/* ---------- 基础防溢出 ---------- */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 * {
     box-sizing: border-box;
 }
 
-/* 图片、媒体自动缩小 */
-img,
-video {
-    max-width: 100%;
-    height: auto;
-}
 
-
-/* ----------------------------------------
-   大屏幕优化
----------------------------------------- */
+/* =====================================================
+   电脑端
+   ===================================================== */
 
 .journal-layout {
+    display: flex;
     width: 100%;
     min-height: 100vh;
 }
 
-/* 左右区域允许根据屏幕自动伸缩 */
+
+/* ---------- 左侧栏 ---------- */
+
 .sidebar {
-    flex-shrink: 0;
+    width: 300px;
+    min-width: 300px;
+    height: 100vh;
+
+    padding: 30px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
+
+
+/* ---------- 右侧写日记区域 ---------- */
 
 .write-container {
+    flex: 1;
     min-width: 0;
+
+    width: auto;
+
+    padding: 40px 60px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 
-/* ----------------------------------------
-   中等屏幕 / 平板
----------------------------------------- */
+/* 防止输入框撑开页面 */
 
-@media (max-width: 900px) {
-
-    .journal-layout {
-        gap: 20px;
-    }
-
-    .sidebar {
-        width: 280px;
-        min-width: 240px;
-    }
-
-    .write-container {
-        padding: 35px 30px;
-    }
-
-    .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-
-    .stat-item {
-        padding: 12px 4px;
-    }
-
-    .stat-item strong {
-        font-size: 21px;
-    }
-
-    #calendar {
-        gap: 4px;
-    }
-
+#title,
+#content {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 
-/* ----------------------------------------
-   小屏幕 / 手机
----------------------------------------- */
-
-@media (max-width: 700px) {
-
-    body {
-        overflow-x: hidden;
-    }
-
-    /* 左右布局改为上下布局 */
-    .journal-layout {
-        flex-direction: column;
-        width: 100%;
-        min-height: 100vh;
-    }
-
-    /* 左侧栏变成完整宽度 */
-    .sidebar {
-        width: 100%;
-        min-width: 0;
-        padding: 20px;
-    }
-
-    /* 编辑区域变成完整宽度 */
-    .write-container {
-        width: 100%;
-        min-width: 0;
-        padding: 30px 20px;
-    }
-
-    /* 标题栏 */
-    .sidebar-title {
-        width: 100%;
-    }
-
-    /* 防止历史日记内容撑破手机 */
-    #journalList {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .journal-item {
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .journal-item h3 {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    /* Statistics */
-    .stats-grid {
-        width: 100%;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
-    }
-
-    .stat-item {
-        padding: 12px 5px;
-        min-width: 0;
-    }
-
-    .stat-item strong {
-        font-size: clamp(18px, 6vw, 24px);
-    }
-
-    .stat-item span {
-        font-size: clamp(10px, 3vw, 12px);
-    }
-
-    /* Calendar */
-    .calendar-box {
-        width: 100%;
-    }
-
-    #calendar {
-        width: 100%;
-        gap: 4px;
-    }
-
-    .calendar-day {
-        width: 100%;
-        min-width: 0;
-        height: clamp(32px, 9vw, 42px);
-        font-size: clamp(12px, 3.5vw, 15px);
-    }
-
-    /* 日记标题 */
-    .write-container h1 {
-        font-size: clamp(28px, 8vw, 38px);
-    }
-
-    .subtitle {
-        font-size: clamp(13px, 4vw, 16px);
-    }
-
-    /* 输入框 */
-    #title,
-    #content {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    #title {
-        font-size: 16px;
-    }
-
-    #content {
-        min-height: 280px;
-        font-size: 16px;
-    }
-
-    /* 顶部导航 */
-    .top-bar {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-}
-
-
-/* ----------------------------------------
-   超小屏幕
----------------------------------------- */
-
-@media (max-width: 380px) {
-
-    .sidebar {
-        padding: 15px;
-    }
-
-    .write-container {
-        padding: 25px 15px;
-    }
-
-    .stats-grid {
-        gap: 5px;
-    }
-
-    .stat-item {
-        padding: 10px 2px;
-    }
-
-    .calendar-day {
-        font-size: 12px;
-    }
-
-}
-/* ========================================
-   手机端专用布局
-   屏幕宽度 ≤ 700px
-======================================== */
-
-@media screen and (max-width: 700px) {
-
-    /* =========================
-       1. 防止整个网页横向溢出
-    ========================= */
-
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden !important;
-        margin: 0;
-        padding: 0;
-    }
-
-
-    /* =========================
-       2. 整个页面改成上下结构
-    ========================= */
-
-    .journal-layout {
-        display: flex !important;
-        flex-direction: column !important;
-
-        width: 100% !important;
-        max-width: 100% !important;
-
-        min-height: 100vh;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        gap: 0 !important;
-    }
-
-
-    /* =========================
-       3. 左侧栏
-       手机端变成顶部区域
-    ========================= */
-
-    .sidebar {
-        display: block !important;
-
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: 100% !important;
-
-        height: auto !important;
-
-        padding: 25px 20px 30px !important;
-
-        margin: 0 !important;
-
-        overflow: visible !important;
-    }
-
-
-    /* =========================
-       4. My Notes + 新建按钮
-    ========================= */
-
-    .sidebar-title {
-        width: 100% !important;
-
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-
-        margin-bottom: 25px !important;
-    }
-
-    .sidebar-title h2 {
-        margin: 0 !important;
-
-        font-size: 32px !important;
-    }
-
-    #newBtn {
-        width: 52px !important;
-        height: 52px !important;
-
-        flex-shrink: 0;
-
-        font-size: 32px !important;
-
-        border-radius: 50% !important;
-    }
-
-
-    /* =========================
-       5. 历史日记列表
-    ========================= */
-
-    #journalList {
-        width: 100% !important;
-        max-width: 100% !important;
-
-        display: flex;
-        flex-direction: column;
-
-        gap: 12px;
-    }
-
-    .journal-item {
-        width: 100% !important;
-        max-width: 100% !important;
-
-        min-width: 0 !important;
-
-        overflow: hidden;
-    }
-
-
-    /* =========================
-       6. 分割线
-    ========================= */
-
-    .sidebar-line {
-        width: 100% !important;
-
-        margin: 25px 0 !important;
-    }
-
-
-    /* =========================
-       7. Statistics
-    ========================= */
-
-    .stats-grid {
-        width: 100% !important;
-
-        display: grid !important;
-
-        grid-template-columns: repeat(3, 1fr) !important;
-
-        gap: 10px !important;
-    }
-
-    .stat-item {
-        width: 100% !important;
-        min-width: 0 !important;
-
-        padding: 15px 5px !important;
-
-        overflow: hidden;
-    }
-
-    .stat-item strong {
-        font-size: 24px !important;
-    }
-
-    .stat-item span {
-        font-size: 12px !important;
-
-        white-space: nowrap;
-    }
-
-
-    /* =========================
-       8. Calendar
-    ========================= */
-
-    .calendar-box {
-        width: 100% !important;
-
-        max-width: 100% !important;
-
-        overflow: hidden !important;
-    }
-
-    .calendar-box h3 {
-        font-size: 28px !important;
-
-        margin-bottom: 20px !important;
-    }
-
-
-    /* 日历顶部 */
-    .calendar-header {
-        width: 100% !important;
-
-        display: flex !important;
-
-        justify-content: space-between !important;
-
-        align-items: center !important;
-
-        margin-bottom: 20px !important;
-    }
-
-    .calendar-header span {
-        font-size: 22px !important;
-    }
-
-
-    /* 日历 */
-    #calendar {
-        width: 100% !important;
-
-        display: grid !important;
-
-        grid-template-columns: repeat(7, 1fr) !important;
-
-        gap: 5px !important;
-    }
-
-
-    /* 日期 */
-    .calendar-day {
-        width: 100% !important;
-
-        min-width: 0 !important;
-
-        height: 42px !important;
-
-        display: flex !important;
-
-        justify-content: center !important;
-
-        align-items: center !important;
-
-        font-size: 15px !important;
-
-        position: relative;
-    }
-
-
-    /* =========================
-       9. 写日记区域
-       放到侧边栏下面
-    ========================= */
-
-    .write-container {
-        display: block !important;
-
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: 100% !important;
-
-        height: auto !important;
-
-        margin: 0 !important;
-
-        padding: 35px 20px 50px !important;
-
-        overflow: visible !important;
-    }
-
-
-    /* =========================
-       10. 顶部 Back + 日期
-    ========================= */
-
-    .top-bar {
-        width: 100% !important;
-
-        display: flex !important;
-
-        justify-content: space-between !important;
-
-        align-items: center !important;
-
-        margin-bottom: 25px !important;
-    }
-
-
-    /* =========================
-       11. My Journal 标题
-    ========================= */
-
-    .write-container h1 {
-        width: 100% !important;
-
-        font-size: 40px !important;
-
-        line-height: 1.2 !important;
-
-        margin: 20px 0 10px !important;
-    }
-
-    .subtitle {
-        font-size: 18px !important;
-
-        margin-bottom: 25px !important;
-    }
-
-
-    /* =========================
-       12. 标题输入框
-    ========================= */
-
-    #title {
-        display: block !important;
-
-        width: 100% !important;
-        max-width: 100% !important;
-
-        height: 60px !important;
-
-        margin: 0 0 18px !important;
-
-        padding: 0 20px !important;
-
-        font-size: 17px !important;
-    }
-
-
-    /* =========================
-       13. 正文输入框
-    ========================= */
-
-    #content {
-        display: block !important;
-
-        width: 100% !important;
-        max-width: 100% !important;
-
-        min-height: 300px !important;
-
-        margin: 0 !important;
-
-        padding: 20px !important;
-
-        font-size: 17px !important;
-
-        line-height: 1.8 !important;
-    }
-
-
-    /* =========================
-       14. Save按钮
-    ========================= */
-
-    .write-container > button {
-        display: block !important;
-
-        width: 160px !important;
-
-        height: 52px !important;
-
-        margin: 30px auto 0 !important;
-
-        font-size: 18px !important;
-    }
-
-}
-
-
-/* ========================================
-   超小手机
-   例如 iPhone SE
-======================================== */
-
-@media screen and (max-width: 380px) {
-
-    .sidebar {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
-
-    .write-container {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
-    }
-
-    .sidebar-title h2 {
-        font-size: 28px !important;
-    }
-
-    .write-container h1 {
-        font-size: 34px !important;
-    }
-
-    .calendar-day {
-        height: 38px !important;
-        font-size: 14px !important;
-    }
-
-}
 /* =====================================================
-   手机端自适应布局
+   平板
+   ===================================================== */
+
+@media screen and (max-width: 1000px) {
+
+    .sidebar {
+        width: 260px;
+        min-width: 260px;
+        padding: 25px;
+    }
+
+    .write-container {
+        padding: 35px 35px;
+    }
+
+    .write-container h1 {
+        font-size: 48px;
+    }
+
+}
+
+
+/* =====================================================
+   手机
    ===================================================== */
 
 @media screen and (max-width: 768px) {
 
-    /* ---------- 整个页面 ---------- */
-
     html,
     body {
         width: 100%;
         max-width: 100%;
-        margin: 0;
-        padding: 0;
         overflow-x: hidden;
-    }
-
-    * {
-        box-sizing: border-box;
+        overflow-y: auto;
     }
 
 
     /* ---------- 主布局 ---------- */
 
     .journal-layout {
-        width: 100%;
-        min-width: 0;
         display: flex;
         flex-direction: column;
+
+        width: 100%;
+        max-width: 100%;
+
+        min-height: 100vh;
+
+        overflow: visible;
     }
 
 
-    /* =====================================================
-       左侧栏
-       ===================================================== */
+    /* ---------- Sidebar ---------- */
 
     .sidebar {
         width: 100%;
         min-width: 0;
         max-width: 100%;
+
         height: auto;
-        min-height: auto;
-        position: relative;
+
+        padding: 25px 20px 35px;
+
         overflow: visible;
-        padding: 28px 20px 35px;
     }
 
 
-    /* My Notes */
+    /* ---------- My Notes ---------- */
 
     .sidebar-title {
         width: 100%;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
 
+
     .sidebar-title h2 {
         margin: 0;
+
         font-size: 34px;
         line-height: 1.2;
     }
 
 
-    /* +按钮 */
+    /* ---------- 新建按钮 ---------- */
 
     #newBtn {
-        width: 58px;
-        height: 58px;
-        min-width: 58px;
-        border-radius: 50%;
-        font-size: 36px;
+        width: 55px;
+        height: 55px;
+
+        min-width: 55px;
+
+        font-size: 34px;
     }
 
 
@@ -1476,136 +959,132 @@ video {
     #journalList {
         width: 100%;
         max-width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 12px;
     }
+
 
     .journal-item {
         width: 100%;
         max-width: 100%;
+        min-width: 0;
+
+        overflow: hidden;
     }
 
 
-    /* ---------- 分割线 ---------- */
+    .journal-item h3 {
+        max-width: 100%;
 
-    .sidebar-line {
-        width: 100%;
-        margin: 28px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
 
-    /* =====================================================
-       Statistics
-       ===================================================== */
+    /* ---------- Statistics ---------- */
 
-    .statistics {
+    .stats-grid {
         width: 100%;
         max-width: 100%;
-    }
 
-    .statistics h2,
-    .statistics h3 {
-        font-size: 32px;
-    }
-
-
-    /* 统计卡片 */
-
-    .stats-container,
-    .statistics-container,
-    .stats-cards {
-        width: 100%;
-        max-width: 100%;
         display: grid;
+
         grid-template-columns: repeat(3, 1fr);
+
         gap: 10px;
     }
 
-    .stat-card {
-        width: 100%;
+
+    .stat-item {
         min-width: 0;
-        padding: 20px 8px;
+
+        width: 100%;
+
+        padding: 14px 5px;
+
+        overflow: hidden;
     }
 
 
-    /* =====================================================
-       Calendar
-       ===================================================== */
+    .stat-item strong {
+        font-size: 24px;
+    }
+
+
+    .stat-item span {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+
+    /* ---------- Calendar ---------- */
 
     .calendar-box {
         width: 100%;
         max-width: 100%;
     }
 
-    .calendar-box h3 {
-        font-size: 30px;
-        margin-bottom: 25px;
-    }
-
-
-    /* 月份标题 */
-
-    .calendar-header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .calendar-header span {
-        font-size: 26px;
-    }
-
-
-    /* 日历 */
 
     #calendar {
         width: 100%;
         max-width: 100%;
+
         display: grid;
+
         grid-template-columns: repeat(7, 1fr);
-        gap: 8px;
+
+        gap: 5px;
     }
+
 
     .calendar-day {
         width: 100%;
-        aspect-ratio: 1 / 1;
+        min-width: 0;
+
+        height: 42px;
+
         display: flex;
+
         align-items: center;
         justify-content: center;
+
         position: relative;
-        min-width: 0;
+
+        font-size: 15px;
     }
 
 
-    /* =====================================================
-       日记编辑区域
-       ===================================================== */
+    /* ---------- 写日记区域 ---------- */
 
     .write-container {
         width: 100%;
         max-width: 100%;
+
         min-width: 0;
-        margin: 0;
+
         padding: 30px 20px 50px;
+
+        overflow: visible;
+
         border-radius: 30px 30px 0 0;
     }
 
 
-    /* 顶部 */
+    /* ---------- 顶部 ---------- */
 
     .top-bar {
         width: 100%;
+
         display: flex;
+
         align-items: center;
         justify-content: space-between;
-    }
 
-
-    .top-bar a {
-        font-size: 18px;
-    }
-
-    #date {
-        font-size: 18px;
+        gap: 10px;
     }
 
 
@@ -1613,39 +1092,58 @@ video {
 
     .write-container h1 {
         width: 100%;
-        font-size: 48px;
-        line-height: 1.15;
-        margin: 35px 0 15px;
-        word-break: normal;
+
+        font-size: 40px;
+
+        line-height: 1.2;
+
+        margin: 30px 0 15px;
+
+        overflow-wrap: break-word;
     }
+
 
     .subtitle {
-        font-size: 24px;
+        font-size: 18px;
+
         line-height: 1.5;
-        margin-bottom: 28px;
+
+        margin-bottom: 25px;
     }
 
 
-    /* ---------- 标题输入框 ---------- */
+    /* ---------- 标题 ---------- */
 
     #title {
         width: 100%;
         max-width: 100%;
-        height: 70px;
-        font-size: 20px;
-        padding: 0 22px;
+
+        height: 60px;
+
+        font-size: 17px;
+
+        padding: 0 18px;
+
+        margin-bottom: 18px;
     }
 
 
-    /* ---------- 正文输入框 ---------- */
+    /* ---------- 正文 ---------- */
 
     #content {
         width: 100%;
         max-width: 100%;
-        min-height: 320px;
-        height: 320px;
-        font-size: 19px;
-        padding: 22px;
+
+        min-height: 300px;
+
+        height: 300px;
+
+        font-size: 17px;
+
+        line-height: 1.8;
+
+        padding: 20px;
+
         resize: vertical;
     }
 
@@ -1653,311 +1151,103 @@ video {
     /* ---------- Save ---------- */
 
     .write-container > button {
-        width: 180px;
+        width: 160px;
+
         max-width: 70%;
-        height: 55px;
+
+        height: 52px;
+
         margin: 30px auto 0;
+
         display: block;
-        font-size: 20px;
+
+        font-size: 18px;
     }
 
 }
 
 
 /* =====================================================
-   更小的手机
+   小手机
    ===================================================== */
 
 @media screen and (max-width: 480px) {
 
     .sidebar {
-        padding: 22px 16px 30px;
+        padding: 20px 15px 30px;
     }
+
 
     .sidebar-title h2 {
         font-size: 30px;
     }
 
+
     #newBtn {
-        width: 52px;
-        height: 52px;
-        min-width: 52px;
-        font-size: 32px;
+        width: 50px;
+        height: 50px;
+
+        min-width: 50px;
+
+        font-size: 30px;
     }
 
-    .statistics h2,
-    .statistics h3 {
-        font-size: 28px;
-    }
-
-    .calendar-box h3 {
-        font-size: 27px;
-    }
-
-    .calendar-header span {
-        font-size: 23px;
-    }
-
-    #calendar {
-        gap: 5px;
-    }
 
     .write-container {
-        padding: 25px 16px 40px;
+        padding: 25px 15px 40px;
     }
+
 
     .write-container h1 {
-        font-size: 42px;
+        font-size: 34px;
     }
+
 
     .subtitle {
-        font-size: 21px;
+        font-size: 17px;
     }
 
+
     #title {
-        height: 64px;
-        font-size: 18px;
+        height: 56px;
+
+        font-size: 16px;
     }
+
 
     #content {
         min-height: 280px;
+
         height: 280px;
-        font-size: 18px;
+
+        font-size: 16px;
     }
 
-}
-/* =====================================================
-   手机端滚动修复
-   ===================================================== */
 
-@media screen and (max-width: 768px) {
-
-    html {
-        width: 100%;
-        height: auto;
-        min-height: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
+    .stats-grid {
+        gap: 6px;
     }
 
-    body {
-        width: 100%;
-        height: auto;
-        min-height: 100vh;
 
-        margin: 0;
-        padding: 0;
-
-        overflow-x: hidden;
-        overflow-y: auto;
-
-        position: relative;
+    .stat-item {
+        padding: 12px 3px;
     }
 
-    /* 主布局允许自然变长 */
-    .journal-layout {
-        width: 100%;
-        min-width: 0;
 
-        height: auto;
-        min-height: 100vh;
-
-        display: flex;
-        flex-direction: column;
-
-        overflow: visible;
+    .stat-item strong {
+        font-size: 21px;
     }
 
-    /* 左侧栏在手机端不再固定高度 */
-    .sidebar {
-        width: 100%;
-        min-width: 0;
 
-        height: auto;
-        min-height: auto;
-
-        position: relative;
-
-        overflow: visible;
+    .stat-item span {
+        font-size: 11px;
     }
 
-    /* 日记列表 */
-    #journalList {
-        width: 100%;
-        height: auto;
-        max-height: none;
 
-        overflow: visible;
+    .calendar-day {
+        height: 38px;
+
+        font-size: 14px;
     }
 
-    /* 日历 */
-    .calendar-box {
-        width: 100%;
-        height: auto;
-
-        overflow: visible;
-    }
-
-    #calendar {
-        height: auto;
-        overflow: visible;
-    }
-
-    /* 日记编辑区域 */
-    .write-container {
-        width: 100%;
-        min-width: 0;
-
-        height: auto;
-        min-height: 100vh;
-
-        position: relative;
-
-        overflow: visible;
-    }
-
-    /* 防止内容被强制限制 */
-    .write-container h1,
-    .write-container p,
-    .write-container input,
-    .write-container textarea,
-    .write-container button {
-        max-width: 100%;
-    }
-}
-/* =====================================================
-   手机端：彻底修复横向溢出
-   ===================================================== */
-
-@media screen and (max-width: 768px) {
-
-    /* 页面本身禁止横向超出 */
-    html,
-    body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden !important;
-    }
-
-    /* 所有元素都不能超过手机屏幕 */
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-        max-width: 100%;
-    }
-
-    /* 主布局 */
-    .journal-layout {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-
-        margin: 0 !important;
-        padding: 0 !important;
-
-        overflow-x: hidden !important;
-    }
-
-    /* 左侧区域 */
-    .sidebar {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-
-        margin: 0 !important;
-
-        overflow-x: hidden !important;
-    }
-
-    /* 日记列表 */
-    #journalList {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    .journal-item {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    /* 统计区域 */
-    .statistics {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    /* 统计卡片 */
-    .stats-container,
-    .statistics-container,
-    .stats-cards {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    .stat-card {
-        min-width: 0 !important;
-    }
-
-    /* 日历 */
-    .calendar-box {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-
-        overflow-x: hidden !important;
-    }
-
-    #calendar {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    /* 日记编辑区域 */
-    .write-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-
-        margin: 0 !important;
-
-        overflow-x: hidden !important;
-    }
-
-    /* 顶部 */
-    .top-bar {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    /* 标题 */
-    .write-container h1 {
-        max-width: 100% !important;
-        overflow-wrap: break-word;
-        word-break: normal;
-    }
-
-    /* 输入框 */
-    #title,
-    #content {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    /* 防止超长文字撑开页面 */
-    .write-container,
-    .sidebar,
-    .journal-item,
-    .journal-item h3,
-    .journal-item p {
-        overflow-wrap: anywhere;
-        word-wrap: break-word;
-    }
 }
