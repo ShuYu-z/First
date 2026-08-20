@@ -1,7 +1,7 @@
 // =========================
 // 显示今天日期
 // =========================
-
+let selectedMood = "";
 document.addEventListener("DOMContentLoaded", () => {
 
     const date = document.getElementById("date");
@@ -22,13 +22,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function saveJournal() {
 
-    const title = document.getElementById("title").value.trim();
-    const content = document.getElementById("content").value.trim();
+    const titleInput = document.getElementById("title");
+    const contentInput = document.getElementById("content");
+
+    const title = titleInput.value.trim();
+    const content = contentInput.value.trim();
 
     if (title === "" || content === "") {
         alert("请填写标题和内容");
         return;
     }
+
+    if (selectedMood === "") {
+        alert("请选择今天的心情");
+        return;
+    }
+
+    const now = new Date();
+
+    const journal = {
+        id: Date.now(),
+
+        title: title,
+
+        content: content,
+
+        mood: selectedMood,
+
+        date: now.toLocaleString(),
+
+        day:
+            now.getFullYear() + "-" +
+            String(now.getMonth() + 1).padStart(2, "0") + "-" +
+            String(now.getDate()).padStart(2, "0")
+    };
+
+    let journals =
+        JSON.parse(localStorage.getItem("journals")) || [];
+
+    journals.unshift(journal);
+
+    localStorage.setItem(
+        "journals",
+        JSON.stringify(journals)
+    );
+
+    // 清空输入框
+    titleInput.value = "";
+    contentInput.value = "";
+
+    // 清除心情选择
+    selectedMood = "";
+
+    document.querySelectorAll(".mood-btn").forEach(btn => {
+        btn.classList.remove("selected");
+    });
+
+    // 刷新日记列表
+    loadJournals();
+
+    // 刷新统计
+    updateStatistics();
+
+    // 刷新日历
+    renderCalendar();
+
+    alert("日记保存成功！");
+}
 
    const now = new Date();
 
@@ -515,4 +575,22 @@ function calculateStreak(journals) {
     }
 
     return streak;
+}
+// =========================
+// 心情选择
+// =========================
+
+function selectMood(button) {
+
+    // 清除之前的选择
+    document.querySelectorAll(".mood-btn").forEach(btn => {
+        btn.classList.remove("selected");
+    });
+
+    // 当前按钮选中
+    button.classList.add("selected");
+
+    // 获取心情
+    selectedMood = button.dataset.mood;
+
 }
