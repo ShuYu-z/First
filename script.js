@@ -119,25 +119,32 @@ function loadJournals() {
 
         card.className = "journal-item";
 
-  card.innerHTML = `
+card.innerHTML = `
 <div class="journal-header">
-<div class="journal-right">
 
-    <span class="journal-mood">
-        ${journal.mood || ""}
-    </span>
-
-    <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
-        🗑
-    </button>
-
-</div>
+    <div class="journal-info">
+        <h3>${journal.title}</h3>
+        <p>${journal.date}</p>
+    </div>
 
     <div class="journal-right">
-        ${journal.mood || ""}
+
+        <span class="journal-mood">
+            ${
+                journal.mood === "开心" ? "😊" :
+                journal.mood === "平静" ? "😌" :
+                journal.mood === "幸福" ? "🥰" :
+                journal.mood === "难过" ? "😔" :
+                journal.mood === "生气" ? "😡" :
+                journal.mood === "疲惫" ? "😪" :
+                journal.mood || ""
+            }
+        </span>
+
         <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
             🗑
         </button>
+
     </div>
 
 </div>
