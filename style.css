@@ -1368,9 +1368,14 @@ body {
 .mood-btn.selected span {
     color: white;
 }
+.journal-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .journal-mood {
-    font-size: 14px;
-    color: #5d88b5;
-    margin-bottom: 4px;
-    font-weight: 500;
+    font-size: 24px;
+    line-height: 1;
+    margin: 0;
 }
