@@ -121,11 +121,17 @@ function loadJournals() {
 
   card.innerHTML = `
 <div class="journal-header">
+<div class="journal-right">
 
-    <div class="journal-info">
-        <h3>${journal.title}</h3>
-        <p>${journal.date}</p>
-    </div>
+    <span class="journal-mood">
+        ${journal.mood || ""}
+    </span>
+
+    <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
+        🗑
+    </button>
+
+</div>
 
     <div class="journal-right">
         ${journal.mood || ""}
