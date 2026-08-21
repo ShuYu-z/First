@@ -119,18 +119,22 @@ function loadJournals() {
 
         card.className = "journal-item";
 
-     card.innerHTML = `
+  card.innerHTML = `
 <div class="journal-header">
 
-    <h3>${journal.mood ? journal.mood : ""} ${journal.title}</h3>
+    <div class="journal-info">
+        <h3>${journal.title}</h3>
+        <p>${journal.date}</p>
+    </div>
 
-    <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
-        🗑
-    </button>
+    <div class="journal-right">
+        ${journal.mood || ""}
+        <button class="delete-btn" onclick="deleteJournal(${journal.id}, event)">
+            🗑
+        </button>
+    </div>
 
 </div>
-
-<p>${journal.date}</p>
 `;
         card.addEventListener("click", () => {
 
